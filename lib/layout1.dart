@@ -20,10 +20,6 @@ class _Layout1State extends State<Layout1> {
       style: optionStyle,
     ),
     CollectionPage(title: 'title'),
-    // Text(
-    //   'Index 3: School',
-    //   style: optionStyle,
-    // ),
     Text(
       'Setting',
       style: optionStyle,
@@ -54,11 +50,6 @@ class _Layout1State extends State<Layout1> {
             label: 'Collection',
             backgroundColor: Colors.green,
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.school),
-          //   label: 'Note',
-          //   backgroundColor: Colors.purple,
-          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',

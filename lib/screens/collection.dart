@@ -1,3 +1,5 @@
+import 'package:erz_app/untilities/rotate.dart';
+import 'package:erz_app/widgets/cards/collection_card.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -26,8 +28,7 @@ class _CollectionPageState extends State<CollectionPage> {
               filled: true,
               fillColor: Colors.white,
               contentPadding: EdgeInsets.all(10),
-              suffixIcon: Transform.rotate(
-                angle: 90 * math.pi /180,
+              suffixIcon: Rotate(
                 child: IconButton(
                   icon: const Icon(Icons.more_horiz),
                   onPressed: () {
@@ -40,6 +41,7 @@ class _CollectionPageState extends State<CollectionPage> {
         child: Column(
           children: <Widget>[
             Text('COLLECTION PAGE1', style: TextStyle(fontSize: 40)),
+            CollectionCard()
           ]
         ),
       ),
