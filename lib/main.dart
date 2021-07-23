@@ -1,4 +1,5 @@
 import 'package:erz_app/layout1.dart';
+import 'package:erz_app/themes/theme1.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +14,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryTextTheme: TextTheme(),
+        textTheme: Theme1().textTheme
       ),
       home: Layout1(title: 'Flutter Demo Home Page'),
     );

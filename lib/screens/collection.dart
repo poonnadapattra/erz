@@ -1,8 +1,6 @@
 import 'package:erz_app/untilities/rotate.dart';
 import 'package:erz_app/widgets/cards/collection_card.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
-
 class CollectionPage extends StatefulWidget {
   CollectionPage({Key? key, required this.title}) : super(key: key);
 
@@ -39,10 +37,7 @@ class _CollectionPageState extends State<CollectionPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
-            Text('COLLECTION PAGE1', style: TextStyle(fontSize: 40)),
-            CollectionCard()
-          ]
+          children: [1, 2, 3].map((item) => new CollectionCard()).toList()
         ),
       ),
       floatingActionButton: FloatingActionButton(
