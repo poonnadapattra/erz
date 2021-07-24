@@ -1,6 +1,8 @@
+import 'package:erz_app/providers/collection_provider.dart';
 import 'package:erz_app/untilities/rotate.dart';
 import 'package:erz_app/widgets/cards/collection_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 class CollectionPage extends StatefulWidget {
   CollectionPage({Key? key, required this.title}) : super(key: key);
 
@@ -11,8 +13,11 @@ class CollectionPage extends StatefulWidget {
 }
 
 class _CollectionPageState extends State<CollectionPage> {
+
   @override
   Widget build(BuildContext context) {
+    CollectionProvider collectionProvider = Provider.of<CollectionProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Container(
@@ -36,15 +41,32 @@ class _CollectionPageState extends State<CollectionPage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [1, 2, 3].map((item) => new CollectionCard()).toList()
+        child: Consumer<CollectionProvider>(
+          builder: (context, data, child) {
+            return FutureBuilder<List>(
+              future: data.getCollectionData(1),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    children: snapshot.data!.map((item) => new CollectionCard()).toList()
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+
+                // By default, show a loading spinner.
+                return const CircularProgressIndicator();
+              },
+            );
+          }
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('This is a snackbar'))
-          );
+          collectionProvider.increment();
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   const SnackBar(content: Text('This is a snackbar'))
+          // );
         },
         child: const Icon(Icons.add),
       ),
