@@ -1,3 +1,4 @@
+import 'package:erz_app/screens/collection/create_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -24,7 +25,11 @@ class MyApp extends StatelessWidget {
           primaryTextTheme: TextTheme(),
           textTheme: Theme1().textTheme
         ),
-        home: Layout1(title: 'Flutter Demo Home Page')  
+        initialRoute: "/",
+        routes: {
+          '/': (context) => Layout1(title: 'Flutter Demo Home Page'),
+          '/collection/create': (context) => CreateCollectionPage(),
+        },
       ),
     );
   }

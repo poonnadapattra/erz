@@ -7,8 +7,8 @@ class CollectionProvider extends ChangeNotifier {
   CollectionProvider({this.userId = 0});
 
   Future<List> getCollectionData(c) async {
-    List futureAlbum = await fetchAlbum();
-    return futureAlbum;
+    List collectionList = await fetchCollection();
+    return collectionList;
   }
 
   increment() {

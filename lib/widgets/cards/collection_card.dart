@@ -4,10 +4,18 @@ import 'dart:math' as math;
 enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
 
 class CollectionCard extends StatelessWidget {
+  final int id;
+  final String title;
+  final String description;
 
+  CollectionCard({
+    required this.id,
+    required this.title,
+    required this.description,
+  });
 
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
       List<String> list = ['one', 'two', 'three', 'four', 'one', 'two', 'three', 'four', 'one', 'two', 'three', 'four', 'one', 'two', 'three', 'four'];
       List<Widget> widgets = list.map((name) => new Text(name + ' ', style: Theme.of(context).textTheme.subtitle2)).toList();
       
@@ -26,7 +34,7 @@ class CollectionCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Card ONE ONE', style: Theme.of(context).textTheme.headline6),
+                    Text(this.title, style: Theme.of(context).textTheme.headline6),
                     Rotate(
                       child: PopupMenuButton(
                         itemBuilder: (BuildContext context) => <PopupMenuEntry>[
@@ -43,9 +51,11 @@ class CollectionCard extends StatelessWidget {
                     )
                   ]
                 ),
-                Text('describer', style: Theme.of(context).textTheme.subtitle1),
+                Text('describe', style: Theme.of(context).textTheme.subtitle1),
                 Wrap(
-                  children: widgets
+                  children: <Widget>[
+                    Text(this.description)
+                  ]
                 )
               ],
              ),

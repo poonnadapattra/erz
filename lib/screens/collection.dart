@@ -48,13 +48,17 @@ class _CollectionPageState extends State<CollectionPage> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Column(
-                    children: snapshot.data!.map((item) => new CollectionCard()).toList()
+                    children: snapshot.data!.map((item) => 
+                      new CollectionCard(
+                        id: item.id,
+                        title: item.name,
+                        description: item.metadata.description,
+                      )).toList()
                   );
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }
 
-                // By default, show a loading spinner.
                 return const CircularProgressIndicator();
               },
             );
@@ -64,6 +68,7 @@ class _CollectionPageState extends State<CollectionPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           collectionProvider.increment();
+          Navigator.pushNamed(context, '/collection/create');
           // ScaffoldMessenger.of(context).showSnackBar(
           //   const SnackBar(content: Text('This is a snackbar'))
           // );

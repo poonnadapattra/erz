@@ -1,36 +1,17 @@
 import 'dart:convert';
+import 'package:erz_app/models/collection_model.dart';
 import 'package:http/http.dart' as http;
 
-class Album {
-  final int userId;
-  final int id;
-  final String title;
-
-  Album({
-    required this.userId,
-    required this.id,
-    required this.title,
-  });
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-    );
-  }
-}
-
-Future<List> fetchAlbum() async {
+Future<List> fetchCollection() async {
   final response = await http
-      .get(Uri.parse('https://jsonplaceholder.typicode.com/albums'));
+      .get(Uri.parse('http://localhost:8000/api/v1/collections'));
 
   if (response.statusCode == 200) {
-    Iterable albumList = json.decode(response.body);
-    List<Album> albums = List<Album>.from(albumList.map((model)=> Album.fromJson(model)));
+    Iterable colectionList = json.decode(response.body)['results'];
+    List<Collection> collections = List<Collection>.from(colectionList.map((model)=> Collection.fromJson(model)));
 
-    return albums;
+    return collections;
   } else {
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load collection');
   }
 }
